@@ -7,6 +7,7 @@
 //
 
 #import "BTAppDelegate.h"
+#import "BTSampleController.h"
 
 @implementation BTAppDelegate
 
@@ -16,6 +17,8 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    BTSampleController* ctrlr = [[BTSampleController alloc] init];
+    self.window.rootViewController = ctrlr;
     return YES;
 }
 
