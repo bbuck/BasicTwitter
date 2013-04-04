@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D064C238170D58850072A022 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D064C237170D58850072A022 /* BTBaseViewController.m */; };
+		D064C23A170D617F0072A022 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C239170D617F0072A022 /* Accounts.framework */; };
+		D064C23C170D618F0072A022 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C23B170D618F0072A022 /* Social.framework */; };
 		D08566E5170C096B00576E67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08566E4170C096B00576E67 /* UIKit.framework */; };
 		D08566E7170C096B00576E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08566E6170C096B00576E67 /* Foundation.framework */; };
 		D08566E9170C096B00576E67 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08566E8170C096B00576E67 /* CoreGraphics.framework */; };
@@ -35,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D064C236170D58850072A022 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
+		D064C237170D58850072A022 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
+		D064C239170D617F0072A022 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D064C23B170D618F0072A022 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D08566E1170C096B00576E67 /* BasicTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08566E4170C096B00576E67 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D08566E6170C096B00576E67 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D064C23C170D618F0072A022 /* Social.framework in Frameworks */,
+				D064C23A170D617F0072A022 /* Accounts.framework in Frameworks */,
 				D08566E5170C096B00576E67 /* UIKit.framework in Frameworks */,
 				D08566E7170C096B00576E67 /* Foundation.framework in Frameworks */,
 				D08566E9170C096B00576E67 /* CoreGraphics.framework in Frameworks */,
@@ -85,6 +94,8 @@
 		D08566D8170C096B00576E67 = {
 			isa = PBXGroup;
 			children = (
+				D064C23B170D618F0072A022 /* Social.framework */,
+				D064C239170D617F0072A022 /* Accounts.framework */,
 				D08566EA170C096B00576E67 /* BasicTwitter */,
 				D0856708170C096C00576E67 /* BasicTwitterTests */,
 				D08566E3170C096B00576E67 /* Frameworks */,
@@ -120,6 +131,8 @@
 				D08566EB170C096B00576E67 /* Supporting Files */,
 				D0856719170C09F500576E67 /* BTSampleController.h */,
 				D085671A170C09F500576E67 /* BTSampleController.m */,
+				D064C236170D58850072A022 /* BTBaseViewController.h */,
+				D064C237170D58850072A022 /* BTBaseViewController.m */,
 			);
 			path = BasicTwitter;
 			sourceTree = "<group>";
@@ -270,6 +283,7 @@
 				D08566F1170C096B00576E67 /* main.m in Sources */,
 				D08566F5170C096B00576E67 /* BTAppDelegate.m in Sources */,
 				D085671B170C09F500576E67 /* BTSampleController.m in Sources */,
+				D064C238170D58850072A022 /* BTBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +390,7 @@
 				GCC_PREFIX_HEADER = "BasicTwitter/BasicTwitter-Prefix.pch";
 				INFOPLIST_FILE = "BasicTwitter/BasicTwitter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -387,6 +402,7 @@
 				GCC_PREFIX_HEADER = "BasicTwitter/BasicTwitter-Prefix.pch";
 				INFOPLIST_FILE = "BasicTwitter/BasicTwitter-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -444,6 +460,7 @@
 				D0856715170C096C00576E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0856716170C096C00576E67 /* Build configuration list for PBXNativeTarget "BasicTwitterTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +469,7 @@
 				D0856718170C096C00576E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
 
 @interface BTBaseViewController : UIViewController
+
+@property (strong, nonatomic) ACAccount* account;
+@property (strong, nonatomic) ACAccountStore* accountStore;
+@property (strong, nonatomic) UIButton* button;
+
+- (void)changeTweetBtn;
+- (void)tweetBtnPressed;
 
 @end
