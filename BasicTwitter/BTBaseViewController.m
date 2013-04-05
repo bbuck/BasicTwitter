@@ -19,17 +19,18 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.accountStore = [[ACAccountStore alloc] init];
-        self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.button setTitle:@"Tweet" forState:UIControlStateNormal];
-        self.button.frame = CGRectMake(10, 10, 100, 50);
-        [self.view addSubview:self.button];
-        [self.button addTarget:self action:@selector(tweetBtnPressed) forControlEvents:UIControlEventTouchUpInside];
         
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self
-            selector:@selector(changeTweetBtn)
-            name:ACAccountStoreDidChangeNotification
-            object:nil];
+        NSNotificationCenter* notifCenter = [NSNotificationCenter defaultCenter];
+        [notifCenter
+         addObserver:self
+         selector:@selector(changeTweetBtn)
+         name:ACAccountStoreDidChangeNotification
+         object:nil];
+        [notifCenter
+         addObserver:self
+         selector:@selector(sizeComponents)
+         name:UIDeviceOrientationDidChangeNotification
+         object:nil];
     }
     return self;
 }
@@ -41,10 +42,39 @@
     
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.button setTitle:@"Tweet" forState:UIControlStateNormal];
+    [self.button addTarget:self action:@selector(tweetBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    self.button.imageView.image = [UIImage imageNamed:@"bird_blue_32"];
+    
+    self.timelineView = [[UIScrollView alloc] init];
+    self.timelineView.backgroundColor = [UIColor redColor];
+    
+    [self sizeComponents];
+    
+    [self.view addSubview:self.button];
+    [self.view addSubview:self.timelineView];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)sizeComponents
+{
+    CGRect bounds = self.view.bounds;
+    NSLog(@"%f x %f", bounds.size.width, bounds.size.height);
+    float buttonWidth = bounds.size.width - 20;
+    self.button.frame = CGRectMake(10, 10, buttonWidth, 50);
+
+    CGRect timelineFrame = CGRectMake(0, 70, bounds.size.width, self.view.bounds.size.height - 70);
+    self.timelineView.frame = timelineFrame;
 }
 
 - (void)changeTweetBtn
@@ -73,7 +103,7 @@
     if (self.account && self.account.accountType == accountType)
         return;
     SLComposeViewController* composer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [composer shouldAutomaticallyForwardAppearanceMethods]
+    [self presentViewController:composer animated:YES completion:nil];
 }
 
 @end

@@ -24,7 +24,7 @@
 		D0856705170C096C00576E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08566E6170C096B00576E67 /* Foundation.framework */; };
 		D085670D170C096C00576E67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D085670B170C096C00576E67 /* InfoPlist.strings */; };
 		D0856710170C096C00576E67 /* BasicTwitterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D085670F170C096C00576E67 /* BasicTwitterTests.m */; };
-		D085671B170C09F500576E67 /* BTSampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D085671A170C09F500576E67 /* BTSampleController.m */; };
+		D0DFF9F0170EADA100247CD8 /* bird_blue_32.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DFF9EF170EADA100247CD8 /* bird_blue_32.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,7 @@
 		D085670C170C096C00576E67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D085670E170C096C00576E67 /* BasicTwitterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicTwitterTests.h; sourceTree = "<group>"; };
 		D085670F170C096C00576E67 /* BasicTwitterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicTwitterTests.m; sourceTree = "<group>"; };
-		D0856719170C09F500576E67 /* BTSampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSampleController.h; sourceTree = "<group>"; };
-		D085671A170C09F500576E67 /* BTSampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSampleController.m; sourceTree = "<group>"; };
+		D0DFF9EF170EADA100247CD8 /* bird_blue_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird_blue_32.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +128,6 @@
 				D08566F3170C096B00576E67 /* BTAppDelegate.h */,
 				D08566F4170C096B00576E67 /* BTAppDelegate.m */,
 				D08566EB170C096B00576E67 /* Supporting Files */,
-				D0856719170C09F500576E67 /* BTSampleController.h */,
-				D085671A170C09F500576E67 /* BTSampleController.m */,
 				D064C236170D58850072A022 /* BTBaseViewController.h */,
 				D064C237170D58850072A022 /* BTBaseViewController.m */,
 			);
@@ -140,6 +137,7 @@
 		D08566EB170C096B00576E67 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D0DFF9EF170EADA100247CD8 /* bird_blue_32.png */,
 				D08566EC170C096B00576E67 /* BasicTwitter-Info.plist */,
 				D08566ED170C096B00576E67 /* InfoPlist.strings */,
 				D08566F0170C096B00576E67 /* main.m */,
@@ -246,6 +244,7 @@
 				D08566F7170C096B00576E67 /* Default.png in Resources */,
 				D08566F9170C096B00576E67 /* Default@2x.png in Resources */,
 				D08566FB170C096B00576E67 /* Default-568h@2x.png in Resources */,
+				D0DFF9F0170EADA100247CD8 /* bird_blue_32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +281,6 @@
 			files = (
 				D08566F1170C096B00576E67 /* main.m in Sources */,
 				D08566F5170C096B00576E67 /* BTAppDelegate.m in Sources */,
-				D085671B170C09F500576E67 /* BTSampleController.m in Sources */,
 				D064C238170D58850072A022 /* BTBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

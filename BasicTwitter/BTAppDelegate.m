@@ -17,7 +17,9 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
     BTBaseViewController* ctrlr = [[BTBaseViewController alloc] init];
+    ctrlr.view.frame = [[UIScreen mainScreen] bounds];
     self.window.rootViewController = ctrlr;
     
     return YES;
