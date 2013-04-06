@@ -20,6 +20,17 @@
     if (self) {
         self.accountStore = [[ACAccountStore alloc] init];
         
+        self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self.button setTitle:@"Tweet" forState:UIControlStateNormal];
+        [self.button addTarget:self action:@selector(tweetBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+        self.button.imageView.image = [UIImage imageNamed:@"bird_blue_32"];
+        
+        self.timelineView = [[UIScrollView alloc] init];
+        self.timelineView.backgroundColor = [UIColor redColor];
+        
+        [self.view addSubview:self.button];
+        [self.view addSubview:self.timelineView];
+        
         NSNotificationCenter* notifCenter = [NSNotificationCenter defaultCenter];
         [notifCenter
          addObserver:self
@@ -39,25 +50,26 @@
 {
     [super viewDidLoad];
     [self changeTweetBtn];
+    [self sizeComponents];
     
+    NSURL* timelineUrl = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/home_timeline.json"];
+    SLRequest* request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:timelineUrl
+                                               parameters:nil];
+    [request setAccount:self.account];
+    [request performRequestWithHandler:^(NSData* response, NSHTTPURLResponse* urlResponse, NSError* error)
+     {
+         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:response
+                                                              options:0
+                                                                error:nil];
+         NSLog(@"%@", json);
+     }];
 }
 
 - (void)loadView
 {
     [super loadView];
-    
-    self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.button setTitle:@"Tweet" forState:UIControlStateNormal];
-    [self.button addTarget:self action:@selector(tweetBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-    self.button.imageView.image = [UIImage imageNamed:@"bird_blue_32"];
-    
-    self.timelineView = [[UIScrollView alloc] init];
-    self.timelineView.backgroundColor = [UIColor redColor];
-    
-    [self sizeComponents];
-    
-    [self.view addSubview:self.button];
-    [self.view addSubview:self.timelineView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,21 +80,38 @@
 
 - (void)sizeComponents
 {
-    CGRect bounds = self.view.bounds;
-    NSLog(@"%f x %f", bounds.size.width, bounds.size.height);
-    float buttonWidth = bounds.size.width - 20;
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    float width = screenSize.width;
+    float height = screenSize.height;
+    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    // Don't know why this happens, but it does.
+    if (statusBarHeight != 40 || statusBarHeight != 20 || statusBarHeight != 0)
+        statusBarHeight = 20;
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        width = screenSize.height;
+        height = screenSize.width - statusBarHeight;
+    }
+    else {
+        width = screenSize.width;
+        height = screenSize.height - statusBarHeight;
+    }
+    
+    float buttonWidth = width - 20;
     self.button.frame = CGRectMake(10, 10, buttonWidth, 50);
 
-    CGRect timelineFrame = CGRectMake(0, 70, bounds.size.width, self.view.bounds.size.height - 70);
+    CGRect timelineFrame = CGRectMake(0, 70, width, height - 70);
     self.timelineView.frame = timelineFrame;
 }
 
 - (void)changeTweetBtn
 {
-    ACAccountType* accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:SLServiceTypeTwitter];
+    ACAccountType* accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     [self.accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError* error) {
-        if (granted)
+        if (granted) {
             self.account = [self.accountStore accountWithIdentifier:ACAccountTypeIdentifierTwitter];
+        }
         else {
             if (error.code == 6)
                 NSLog(@"No twitter account");
