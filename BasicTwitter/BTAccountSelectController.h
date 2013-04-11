@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Accounts/Accounts.h>
+
+#import "BTAccount.h"
 
 @interface BTAccountSelectController : UIViewController
+
+@property (strong, nonatomic) NSArray* accounts;
+@property (strong, nonatomic) BTAccount* account;
+
+- (BOOL)needsToDisplay;
 
 @end

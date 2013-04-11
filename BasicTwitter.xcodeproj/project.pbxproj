@@ -25,6 +25,8 @@
 		D085670D170C096C00576E67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D085670B170C096C00576E67 /* InfoPlist.strings */; };
 		D0856710170C096C00576E67 /* BasicTwitterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D085670F170C096C00576E67 /* BasicTwitterTests.m */; };
 		D0DFF9F0170EADA100247CD8 /* bird_blue_32.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DFF9EF170EADA100247CD8 /* bird_blue_32.png */; };
+		D0E840A9171392F200C30B98 /* BTAccountSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E840A8171392F200C30B98 /* BTAccountSelectController.m */; };
+		D0E840AC1713CF2400C30B98 /* BTAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E840AB1713CF2400C30B98 /* BTAccount.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,10 @@
 		D085670E170C096C00576E67 /* BasicTwitterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicTwitterTests.h; sourceTree = "<group>"; };
 		D085670F170C096C00576E67 /* BasicTwitterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicTwitterTests.m; sourceTree = "<group>"; };
 		D0DFF9EF170EADA100247CD8 /* bird_blue_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird_blue_32.png; sourceTree = "<group>"; };
+		D0E840A7171392F200C30B98 /* BTAccountSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAccountSelectController.h; sourceTree = "<group>"; };
+		D0E840A8171392F200C30B98 /* BTAccountSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAccountSelectController.m; sourceTree = "<group>"; };
+		D0E840AA1713CF2400C30B98 /* BTAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAccount.h; sourceTree = "<group>"; };
+		D0E840AB1713CF2400C30B98 /* BTAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAccount.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 				D08566EB170C096B00576E67 /* Supporting Files */,
 				D064C236170D58850072A022 /* BTBaseViewController.h */,
 				D064C237170D58850072A022 /* BTBaseViewController.m */,
+				D0E840A7171392F200C30B98 /* BTAccountSelectController.h */,
+				D0E840A8171392F200C30B98 /* BTAccountSelectController.m */,
+				D0E840AA1713CF2400C30B98 /* BTAccount.h */,
+				D0E840AB1713CF2400C30B98 /* BTAccount.m */,
 			);
 			path = BasicTwitter;
 			sourceTree = "<group>";
@@ -282,6 +292,8 @@
 				D08566F1170C096B00576E67 /* main.m in Sources */,
 				D08566F5170C096B00576E67 /* BTAppDelegate.m in Sources */,
 				D064C238170D58850072A022 /* BTBaseViewController.m in Sources */,
+				D0E840A9171392F200C30B98 /* BTAccountSelectController.m in Sources */,
+				D0E840AC1713CF2400C30B98 /* BTAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

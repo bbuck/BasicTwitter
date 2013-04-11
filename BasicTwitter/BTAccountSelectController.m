@@ -18,7 +18,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        UILabel* label = [[UILabel alloc] init];
+        label.text = @"You should see me";
+        label.frame = CGRectMake(0, 0, 100, 50);
+        [self.view addSubview:label];
     }
     return self;
 }

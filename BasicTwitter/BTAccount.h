@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Accounts/Accounts.h>
 
-@interface BTAccount : NSObject
+@interface BTAccount : NSObject <NSCoding>
+
+@property (strong, nonatomic) NSString* accountName;
+@property (strong, nonatomic) ACAccount* account;
+
++ (NSString*)getArchivePath;
++ (void)saveAccount:(BTAccount*)anAccount;
++ (BTAccount*)getAccount;
+
+- (id)initWithAccount:(ACAccount*)anAccount;
 
 @end

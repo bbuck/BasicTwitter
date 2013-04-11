@@ -19,8 +19,9 @@
     [self.window makeKeyAndVisible];
 
     BTBaseViewController* ctrlr = [[BTBaseViewController alloc] init];
+    UINavigationController* navCtrlr = [[UINavigationController alloc] initWithRootViewController:ctrlr];
     ctrlr.view.frame = [[UIScreen mainScreen] bounds];
-    self.window.rootViewController = ctrlr;
+    self.window.rootViewController = navCtrlr;
     
     return YES;
 }
