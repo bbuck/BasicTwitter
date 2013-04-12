@@ -22,14 +22,14 @@
 {
     self = [super init];
     if (self) {
-        self.accountName = [aDecoder decodeObjectForKey:@"accountName"];
+        self.username = [aDecoder decodeObjectForKey:@"accountName"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder*)aCoder
 {
-    [aCoder encodeObject:self.accountName forKey:@"accountName"];
+    [aCoder encodeObject:self.username forKey:@"accountName"];
 }
 
 + (NSString*)getArchivePath

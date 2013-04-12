@@ -123,11 +123,19 @@
     if (theAccounts.count == 0)
         self.btaccount = [[BTAccount alloc] initWithAccount:theAccounts[0]];
     else {
-        NSLog(@"Should be doing what I want ><");
-        BTAccountSelectController* selectController = [[BTAccountSelectController alloc] init];
-        selectController.accounts = theAccounts;
-        selectController.account = self.btaccount;
-        [self presentViewController:selectController animated:YES completion:nil];
+        int index = [BTAccountSelectController needsToDisplayWithAccounts:theAccounts
+                                                              andAccount:self.btaccount];
+        if (index == -1) {
+            BTAccountSelectController* selectController = [[BTAccountSelectController alloc] init];
+            selectController.btBaseController = self;
+            selectController.accounts = theAccounts;
+            selectController.account = self.btaccount;
+            [self presentViewController:selectController animated:YES completion:nil];
+        }
+        else {
+            self.btaccount.account = [theAccounts objectAtIndex:index];
+            [self fetchTimeline];
+        }
     }
 }
 
@@ -137,12 +145,10 @@
         return;
     
     ACAccountType* accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    NSLog(@"Making this call to getTwitterAccount");
     [self.accountStore
      requestAccessToAccountsWithType:accountType
      options:nil
      completion:^(BOOL granted, NSError* error) {
-        NSLog(@"Testing, this should show up");
         if (granted) {
             NSArray* accounts = [self.accountStore accountsWithAccountType:accountType];
             [self getAccountFromArray:accounts];

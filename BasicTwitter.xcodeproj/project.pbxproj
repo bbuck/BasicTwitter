@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE15D7611717D70C00A99467 /* BTAccountPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE15D7601717D70C00A99467 /* BTAccountPicker.m */; };
 		D064C238170D58850072A022 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D064C237170D58850072A022 /* BTBaseViewController.m */; };
 		D064C23A170D617F0072A022 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C239170D617F0072A022 /* Accounts.framework */; };
 		D064C23C170D618F0072A022 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C23B170D618F0072A022 /* Social.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE15D75F1717D70C00A99467 /* BTAccountPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTAccountPicker.h; sourceTree = "<group>"; };
+		BE15D7601717D70C00A99467 /* BTAccountPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTAccountPicker.m; sourceTree = "<group>"; };
 		D064C236170D58850072A022 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
 		D064C237170D58850072A022 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
 		D064C239170D617F0072A022 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -140,6 +143,8 @@
 				D0E840A8171392F200C30B98 /* BTAccountSelectController.m */,
 				D0E840AA1713CF2400C30B98 /* BTAccount.h */,
 				D0E840AB1713CF2400C30B98 /* BTAccount.m */,
+				BE15D75F1717D70C00A99467 /* BTAccountPicker.h */,
+				BE15D7601717D70C00A99467 /* BTAccountPicker.m */,
 			);
 			path = BasicTwitter;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				D064C238170D58850072A022 /* BTBaseViewController.m in Sources */,
 				D0E840A9171392F200C30B98 /* BTAccountSelectController.m in Sources */,
 				D0E840AC1713CF2400C30B98 /* BTAccount.m in Sources */,
+				BE15D7611717D70C00A99467 /* BTAccountPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,7 @@
 
 @interface BTAccount : NSObject <NSCoding>
 
-@property (strong, nonatomic) NSString* accountName;
+@property (strong, nonatomic) NSString* username;
 @property (strong, nonatomic) ACAccount* account;
 
 + (NSString*)getArchivePath;

@@ -18,10 +18,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UILabel* label = [[UILabel alloc] init];
-        label.text = @"You should see me";
-        label.frame = CGRectMake(0, 0, 100, 50);
-        [self.view addSubview:label];
+        self.picker = [[BTAccountPicker alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
+        self.picker.dataSource = self;
+        self.picker.delegate = self;
+        [self.view addSubview:self.picker];
+        self.accounts = @[];
     }
     return self;
 }
@@ -29,13 +30,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setAccountsSource:(NSArray*)theAccounts
+{
+    NSMutableArray* temp = [[NSMutableArray alloc] init];
+    for (ACAccount* account in theAccounts)
+        [temp addObject:account.username];
+    self.accounts = [[NSArray alloc] initWithArray:temp];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.accounts.count;
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [NSString stringWithFormat:@"@%@", [[self.accounts objectAtIndex:row] username]];
+}
+
++ (int)needsToDisplayWithAccounts:(NSArray*)theAccounts
+                       andAccount:(BTAccount*)anAccount
+{
+    if (!anAccount)
+        return -1;
+    
+    for (int i = 0, len = theAccounts.count; i < len; i += 1) {
+        ACAccount* acAccount = [theAccounts objectAtIndex:i];
+        if (acAccount.username == anAccount.username) {
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 @end
