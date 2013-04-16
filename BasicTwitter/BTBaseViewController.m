@@ -21,8 +21,8 @@
     if (self) {
         self.title = @"Timeline";
         
-        UIColor* offWhite = [UIColor colorWithRed:(230 / 255.0) green:(230 / 255.0) blue:(184 / 255.0) alpha:1];
-        self.view.backgroundColor = offWhite;
+        UIColor* paleYellow = [UIColor paleYellow];
+        self.view.backgroundColor = paleYellow;
         
         self.accountStore = [[ACAccountStore alloc] init];
         
@@ -32,7 +32,7 @@
         self.button.imageView.image = [UIImage imageNamed:@"bird_blue_32"];
         
         self.scrollView = [[UIScrollView alloc] init];
-        self.scrollView.backgroundColor = offWhite;
+        self.scrollView.backgroundColor = paleYellow;
         
         [self.view addSubview:self.button];
         [self.view addSubview:self.scrollView];
@@ -45,11 +45,7 @@
          selector:@selector(changeTweetBtn)
          name:ACAccountStoreDidChangeNotification
          object:nil];
-        [notifCenter
-         addObserver:self
-         selector:@selector(sizeComponents)
-         name:UIDeviceOrientationDidChangeNotification
-         object:nil];
+        REGISTER_FOR_ORIENTATION_CHANGE(sizeComponents)
     }
     return self;
 }
@@ -93,28 +89,12 @@
 
 - (void)sizeComponents
 {
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
     
-    float width = screenSize.width;
-    float height = screenSize.height;
-    float statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    // Don't know why this happens, but it does.
-    if (statusBarHeight != 40 || statusBarHeight != 20 || statusBarHeight != 0)
-        statusBarHeight = 20;
-    if (UIDeviceOrientationIsLandscape(orientation)) {
-        width = screenSize.height;
-        height = screenSize.width - statusBarHeight;
-    }
-    else {
-        width = screenSize.width;
-        height = screenSize.height - statusBarHeight;
-    }
-    
-    float buttonWidth = width - 20;
+    float buttonWidth = screenSize.width - 20;
     self.button.frame = CGRectMake(10, 10, buttonWidth, 50);
 
-    CGRect timelineFrame = CGRectMake(0, 70, width, height - 70);
+    CGRect timelineFrame = CGRectMake(0, 70, screenSize.width, screenSize.height - 70);
     self.scrollView.frame = timelineFrame;
 }
 
@@ -130,7 +110,10 @@
             selectController.btBaseController = self;
             selectController.accounts = theAccounts;
             selectController.account = self.btaccount;
-            [self presentViewController:selectController animated:YES completion:nil];
+            [self.navigationController
+                presentViewController:selectController
+                             animated:YES
+                           completion:nil];
         }
         else {
             self.btaccount.account = [theAccounts objectAtIndex:index];

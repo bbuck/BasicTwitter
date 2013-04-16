@@ -16,6 +16,7 @@
     if (self) {
         self.account = anAccount;
     }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder*)aDecoder

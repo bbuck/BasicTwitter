@@ -11,16 +11,19 @@
 
 #import "BTBaseViewController.h"
 #import "BTAccount.h"
-#import "BTAccountPicker.h"
+#import "BTUtils.h"
+#import "UIColor+ColorExtentions.h"
 
 @interface BTAccountSelectController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) NSArray* accounts;
 @property (strong, nonatomic) BTAccount* account;
 @property (strong, nonatomic) BTBaseViewController* btBaseController;
-@property (strong, nonatomic) BTAccountPicker* picker;
+@property (strong, nonatomic) UIPickerView* picker;
 
 - (void)setAccountsSource:(NSArray*)theAccounts;
+- (void)sizeComponents;
+- (CGRect)getPickerFrame;
 
 + (int)needsToDisplayWithAccounts:(NSArray*)theAccounts
                        andAccount:(BTAccount*)anAccount;

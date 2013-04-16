@@ -18,11 +18,18 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.picker = [[BTAccountPicker alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
+        self.view.backgroundColor = [UIColor paleYellow];
+        self.picker = [[UIPickerView alloc] initWithFrame:[self getPickerFrame]];
         self.picker.dataSource = self;
         self.picker.delegate = self;
+        self.picker.showsSelectionIndicator = YES;
         [self.view addSubview:self.picker];
         self.accounts = @[];
+        
+        //UILabel* label = [[UILabel alloc] init];
+        //label
+        
+        REGISTER_FOR_ORIENTATION_CHANGE(sizeComponents)
     }
     return self;
 }
@@ -30,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self sizeComponents];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +67,19 @@
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [NSString stringWithFormat:@"@%@", [[self.accounts objectAtIndex:row] username]];
+}
+
+- (void)sizeComponents
+{
+    self.picker.frame = [self getPickerFrame];
+}
+
+- (CGRect)getPickerFrame
+{
+    CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
+    float pickerY = screenSize.height - 216;
+    
+    return CGRectMake(0, pickerY, screenSize.width, 216 /* magic height? */);
 }
 
 + (int)needsToDisplayWithAccounts:(NSArray*)theAccounts

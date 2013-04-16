@@ -11,6 +11,8 @@
 #import <Social/Social.h>
 
 #import "BTAccount.h"
+#import "BTUtils.h"
+#import "UIColor+ColorExtentions.h"
 
 @interface BTBaseViewController : UIViewController
 
