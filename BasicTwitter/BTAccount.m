@@ -14,7 +14,7 @@
 {
     self = [self init];
     if (self) {
-        self.account = anAccount;
+        self.twitterAccount = anAccount;
     }
     return self;
 }

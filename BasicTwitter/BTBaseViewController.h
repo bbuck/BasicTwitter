@@ -16,14 +16,11 @@
 
 @interface BTBaseViewController : UIViewController
 
-@property (strong, nonatomic) ACAccount* account;
 @property (strong, nonatomic) ACAccountStore* accountStore;
-@property (strong, nonatomic) UIButton* button;
 @property (strong, nonatomic) UIScrollView* scrollView;
-@property (strong, nonatomic) BTAccount* btaccount;
+@property (strong, nonatomic) BTAccount* account;
 
-- (void)changeTweetBtn;
-- (void)tweetBtnPressed;
+- (void)showTwitterComposeView;
 - (void)sizeComponents;
 - (void)fetchTimeline;
 - (void)getAccountFromArray:(NSArray*)theAccounts;

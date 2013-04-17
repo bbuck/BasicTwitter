@@ -16,10 +16,12 @@
 
 @interface BTAccountSelectController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
-@property (strong, nonatomic) NSArray* accounts;
+@property (strong, nonatomic) NSArray* twitterAccounts;
 @property (strong, nonatomic) BTAccount* account;
 @property (strong, nonatomic) BTBaseViewController* btBaseController;
 @property (strong, nonatomic) UIPickerView* picker;
+@property (strong, nonatomic) UILabel* label;
+@property (strong, nonatomic) UIButton* doneButton;
 
 - (void)setAccountsSource:(NSArray*)theAccounts;
 - (void)sizeComponents;

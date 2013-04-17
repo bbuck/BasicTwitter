@@ -12,7 +12,7 @@
 @interface BTAccount : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString* username;
-@property (strong, nonatomic) ACAccount* account;
+@property (strong, nonatomic) ACAccount* twitterAccount;
 
 + (NSString*)getArchivePath;
 + (void)saveAccount:(BTAccount*)anAccount;

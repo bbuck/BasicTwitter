@@ -26,26 +26,18 @@
         
         self.accountStore = [[ACAccountStore alloc] init];
         
-        self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [self.button setTitle:@"Tweet" forState:UIControlStateNormal];
-        [self.button addTarget:self action:@selector(tweetBtnPressed) forControlEvents:UIControlEventTouchUpInside];
-        self.button.imageView.image = [UIImage imageNamed:@"bird_blue_32"];
-        
+        UIBarButtonItem* tweetButton = [[UIBarButtonItem alloc]
+                                            initWithTitle:@"Tweet"
+                                                    style:UIBarButtonItemStylePlain
+                                                   target:self
+                                                   action:@selector(showTwitterComposeView)];
+        self.navigationItem.rightBarButtonItem = tweetButton;
         self.scrollView = [[UIScrollView alloc] init];
         self.scrollView.backgroundColor = paleYellow;
         
-        [self.view addSubview:self.button];
         [self.view addSubview:self.scrollView];
         
         [self getTwitterAccount];
-        
-        NSNotificationCenter* notifCenter = [NSNotificationCenter defaultCenter];
-        [notifCenter
-         addObserver:self
-         selector:@selector(changeTweetBtn)
-         name:ACAccountStoreDidChangeNotification
-         object:nil];
-        REGISTER_FOR_ORIENTATION_CHANGE(sizeComponents)
     }
     return self;
 }
@@ -53,7 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self changeTweetBtn];
     [self sizeComponents];
   //  [self fetchTimeline];
 }
@@ -77,7 +68,7 @@
                                             requestMethod:SLRequestMethodGET
                                                       URL:timelineUrl
                                                parameters:nil];
-    [request setAccount:self.account];
+    [request setAccount:self.account.twitterAccount];
     [request performRequestWithHandler:^(NSData* response, NSHTTPURLResponse* urlResponse, NSError* error)
      {
          NSDictionary* json = [NSJSONSerialization JSONObjectWithData:response
@@ -89,34 +80,28 @@
 
 - (void)sizeComponents
 {
-    CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
-    
-    float buttonWidth = screenSize.width - 20;
-    self.button.frame = CGRectMake(10, 10, buttonWidth, 50);
-
-    CGRect timelineFrame = CGRectMake(0, 70, screenSize.width, screenSize.height - 70);
-    self.scrollView.frame = timelineFrame;
+    self.scrollView.frame = self.navigationController.view.frame;;
 }
 
 - (void)getAccountFromArray:(NSArray*)theAccounts
 {
     if (theAccounts.count == 0)
-        self.btaccount = [[BTAccount alloc] initWithAccount:theAccounts[0]];
+        self.account = [[BTAccount alloc] initWithAccount:theAccounts[0]];
     else {
         int index = [BTAccountSelectController needsToDisplayWithAccounts:theAccounts
-                                                              andAccount:self.btaccount];
-        if (index == -1) {
+                                                               andAccount:self.account];
+        if (index == NSNotFound) {
             BTAccountSelectController* selectController = [[BTAccountSelectController alloc] init];
             selectController.btBaseController = self;
-            selectController.accounts = theAccounts;
-            selectController.account = self.btaccount;
+            selectController.twitterAccounts = theAccounts;
+            selectController.account = self.account;
             [self.navigationController
                 presentViewController:selectController
                              animated:YES
                            completion:nil];
         }
         else {
-            self.btaccount.account = [theAccounts objectAtIndex:index];
+            self.account.twitterAccount = [theAccounts objectAtIndex:index];
             [self fetchTimeline];
         }
     }
@@ -124,7 +109,7 @@
 
 - (void)getTwitterAccount
 {
-    if (self.btaccount)
+    if (self.account)
         return;
     
     ACAccountType* accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
@@ -145,18 +130,7 @@
     }];
 }
 
-- (void)changeTweetBtn
-{
-    if (!self.account)
-        [self getTwitterAccount];
-    
-    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
-        [self.button setEnabled:YES];
-    else
-        [self.button setEnabled:NO];
-}
-
-- (void)tweetBtnPressed
+- (void)showTwitterComposeView
 {
     SLComposeViewController* composer = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     [self presentViewController:composer animated:YES completion:nil];

@@ -24,10 +24,22 @@
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.view addSubview:self.picker];
-        self.accounts = @[];
+        self.twitterAccounts = @[];
         
-        //UILabel* label = [[UILabel alloc] init];
-        //label
+        CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 100)];
+        self.label.text = @"Select a Twitter Account to use";
+        self.label.backgroundColor = [UIColor paleYellow];
+        self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
+        self.label.textAlignment = NSTextAlignmentCenter;
+        self.label.numberOfLines = 0;
+        self.label.lineBreakMode = NSLineBreakByWordWrapping;
+        [self.view addSubview:self.label];
+        
+        self.doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
+        self.doneButton.frame = CGRectMake(10, screenSize.height - 60, screenSize.width - 20, 50);
+        [self.view addSubview:self.doneButton];
         
         REGISTER_FOR_ORIENTATION_CHANGE(sizeComponents)
     }
@@ -51,7 +63,7 @@
     NSMutableArray* temp = [[NSMutableArray alloc] init];
     for (ACAccount* account in theAccounts)
         [temp addObject:account.username];
-    self.accounts = [[NSArray alloc] initWithArray:temp];
+    self.twitterAccounts = [[NSArray alloc] initWithArray:temp];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -61,32 +73,48 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.accounts.count;
+    return self.twitterAccounts.count;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"@%@", [[self.accounts objectAtIndex:row] username]];
+    return [NSString stringWithFormat:@"@%@", [[self.twitterAccounts objectAtIndex:row] username]];
 }
 
 - (void)sizeComponents
 {
+    CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
     self.picker.frame = [self getPickerFrame];
+    
+    CGRect labelFrame = CGRectMake(0, 0, screenSize.width, 0);
+    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
+        labelFrame.size.height = 50;
+    else
+        labelFrame.size.height = 100;
+    self.label.frame = labelFrame;
+    self.doneButton.frame = CGRectMake(10, screenSize.height - 60, screenSize.width - 10, 50);
 }
 
 - (CGRect)getPickerFrame
 {
     CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
-    float pickerY = screenSize.height - 216;
     
-    return CGRectMake(0, pickerY, screenSize.width, 216 /* magic height? */);
+    float pickerHeight = 0;
+    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
+        pickerHeight = 100;
+    else
+        pickerHeight = 216;
+    float pickerY = screenSize.height - pickerHeight - 70;
+    
+    return CGRectMake(0, pickerY, screenSize.width, pickerHeight);
 }
 
+// Determine if this view needs to display
 + (int)needsToDisplayWithAccounts:(NSArray*)theAccounts
                        andAccount:(BTAccount*)anAccount
 {
     if (!anAccount)
-        return -1;
+        return NSNotFound;
     
     for (int i = 0, len = theAccounts.count; i < len; i += 1) {
         ACAccount* acAccount = [theAccounts objectAtIndex:i];
@@ -95,7 +123,7 @@
         }
     }
     
-    return -1;
+    return NSNotFound;
 }
 
 @end
