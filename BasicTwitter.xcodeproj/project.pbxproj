@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE419000171F945E0095EB11 /* BTTimelineTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE418FFF171F945E0095EB11 /* BTTimelineTableController.m */; };
+		BE419003171F94980095EB11 /* BTTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = BE419002171F94980095EB11 /* BTTweet.m */; };
+		BE419006171FCCB90095EB11 /* BTTweetView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE419005171FCCB90095EB11 /* BTTweetView.m */; };
 		BE51BEF6171CFDEF009636F7 /* BTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BE51BEF5171CFDEF009636F7 /* BTUtils.m */; };
 		BE51BEF9171CFFF9009636F7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE51BEF8171CFFF9009636F7 /* Constants.m */; };
 		BE51BEFE171D20CF009636F7 /* UIColor+ColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BE51BEFD171D20CF009636F7 /* UIColor+ColorExtensions.m */; };
-		D064C238170D58850072A022 /* BTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D064C237170D58850072A022 /* BTBaseViewController.m */; };
 		D064C23A170D617F0072A022 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C239170D617F0072A022 /* Accounts.framework */; };
 		D064C23C170D618F0072A022 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D064C23B170D618F0072A022 /* Social.framework */; };
 		D08566E5170C096B00576E67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08566E4170C096B00576E67 /* UIKit.framework */; };
@@ -43,14 +45,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE205030171EEFEF004F0D0B /* BTAccountSelectDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTAccountSelectDelegate.h; sourceTree = "<group>"; };
+		BE418FFE171F945E0095EB11 /* BTTimelineTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTimelineTableController.h; sourceTree = "<group>"; };
+		BE418FFF171F945E0095EB11 /* BTTimelineTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTimelineTableController.m; sourceTree = "<group>"; };
+		BE419001171F94980095EB11 /* BTTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTweet.h; sourceTree = "<group>"; };
+		BE419002171F94980095EB11 /* BTTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTweet.m; sourceTree = "<group>"; };
+		BE419004171FCCB90095EB11 /* BTTweetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTweetView.h; sourceTree = "<group>"; };
+		BE419005171FCCB90095EB11 /* BTTweetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTweetView.m; sourceTree = "<group>"; };
 		BE51BEF4171CFDEF009636F7 /* BTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTUtils.h; sourceTree = "<group>"; };
 		BE51BEF5171CFDEF009636F7 /* BTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTUtils.m; sourceTree = "<group>"; };
 		BE51BEF7171CFF99009636F7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BE51BEF8171CFFF9009636F7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		BE51BEFC171D20A3009636F7 /* UIColor+ColorExtentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorExtentions.h"; sourceTree = "<group>"; };
 		BE51BEFD171D20CF009636F7 /* UIColor+ColorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorExtensions.m"; sourceTree = "<group>"; };
-		D064C236170D58850072A022 /* BTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTBaseViewController.h; sourceTree = "<group>"; };
-		D064C237170D58850072A022 /* BTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTBaseViewController.m; sourceTree = "<group>"; };
 		D064C239170D617F0072A022 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		D064C23B170D618F0072A022 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D08566E1170C096B00576E67 /* BasicTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,8 +150,6 @@
 				D08566F3170C096B00576E67 /* BTAppDelegate.h */,
 				D08566F4170C096B00576E67 /* BTAppDelegate.m */,
 				D08566EB170C096B00576E67 /* Supporting Files */,
-				D064C236170D58850072A022 /* BTBaseViewController.h */,
-				D064C237170D58850072A022 /* BTBaseViewController.m */,
 				D0E840A7171392F200C30B98 /* BTAccountSelectController.h */,
 				D0E840A8171392F200C30B98 /* BTAccountSelectController.m */,
 				D0E840AA1713CF2400C30B98 /* BTAccount.h */,
@@ -155,6 +160,13 @@
 				BE51BEF8171CFFF9009636F7 /* Constants.m */,
 				BE51BEFC171D20A3009636F7 /* UIColor+ColorExtentions.h */,
 				BE51BEFD171D20CF009636F7 /* UIColor+ColorExtensions.m */,
+				BE205030171EEFEF004F0D0B /* BTAccountSelectDelegate.h */,
+				BE418FFE171F945E0095EB11 /* BTTimelineTableController.h */,
+				BE418FFF171F945E0095EB11 /* BTTimelineTableController.m */,
+				BE419001171F94980095EB11 /* BTTweet.h */,
+				BE419002171F94980095EB11 /* BTTweet.m */,
+				BE419004171FCCB90095EB11 /* BTTweetView.h */,
+				BE419005171FCCB90095EB11 /* BTTweetView.m */,
 			);
 			path = BasicTwitter;
 			sourceTree = "<group>";
@@ -306,12 +318,14 @@
 			files = (
 				D08566F1170C096B00576E67 /* main.m in Sources */,
 				D08566F5170C096B00576E67 /* BTAppDelegate.m in Sources */,
-				D064C238170D58850072A022 /* BTBaseViewController.m in Sources */,
 				D0E840A9171392F200C30B98 /* BTAccountSelectController.m in Sources */,
 				D0E840AC1713CF2400C30B98 /* BTAccount.m in Sources */,
 				BE51BEF6171CFDEF009636F7 /* BTUtils.m in Sources */,
 				BE51BEF9171CFFF9009636F7 /* Constants.m in Sources */,
 				BE51BEFE171D20CF009636F7 /* UIColor+ColorExtensions.m in Sources */,
+				BE419000171F945E0095EB11 /* BTTimelineTableController.m in Sources */,
+				BE419003171F94980095EB11 /* BTTweet.m in Sources */,
+				BE419006171FCCB90095EB11 /* BTTweetView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

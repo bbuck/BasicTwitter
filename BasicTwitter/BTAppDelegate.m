@@ -7,7 +7,7 @@
 //
 
 #import "BTAppDelegate.h"
-#import "BTBaseViewController.h"
+#import "BTTimelineTableController.h"
 
 @implementation BTAppDelegate
 
@@ -18,9 +18,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    BTBaseViewController* ctrlr = [[BTBaseViewController alloc] init];
+    BTTimelineTableController* ctrlr = [[BTTimelineTableController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController* navCtrlr = [[UINavigationController alloc] initWithRootViewController:ctrlr];
-    ctrlr.view.frame = [[UIScreen mainScreen] bounds];
+    navCtrlr.view.frame = [[UIScreen mainScreen] bounds];
     self.window.rootViewController = navCtrlr;
     
     return YES;

@@ -9,23 +9,24 @@
 #import <UIKit/UIKit.h>
 #import <Accounts/Accounts.h>
 
-#import "BTBaseViewController.h"
 #import "BTAccount.h"
 #import "BTUtils.h"
 #import "UIColor+ColorExtentions.h"
+#import "BTAccountSelectDelegate.h"
 
 @interface BTAccountSelectController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) NSArray* twitterAccounts;
-@property (strong, nonatomic) BTAccount* account;
-@property (strong, nonatomic) BTBaseViewController* btBaseController;
 @property (strong, nonatomic) UIPickerView* picker;
 @property (strong, nonatomic) UILabel* label;
 @property (strong, nonatomic) UIButton* doneButton;
+@property (weak) id <BTAccountSelectDelegate> delegate;
 
 - (void)setAccountsSource:(NSArray*)theAccounts;
 - (void)sizeComponents;
 - (CGRect)getPickerFrame;
+- (void)selectTwitterAccount;
+- (ACAccount *)getSelectedTwitterAccount;
 
 + (int)needsToDisplayWithAccounts:(NSArray*)theAccounts
                        andAccount:(BTAccount*)anAccount;

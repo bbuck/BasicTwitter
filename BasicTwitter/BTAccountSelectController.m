@@ -28,7 +28,7 @@
         
         CGSize screenSize = [BTUtils getScreenSizeForCurrentOrientationMinusStatusBar:YES];
         self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 100)];
-        self.label.text = @"Select a Twitter Account to use";
+        self.label.text = @"Select a Twitter Account to Use";
         self.label.backgroundColor = [UIColor paleYellow];
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
         self.label.textAlignment = NSTextAlignmentCenter;
@@ -39,6 +39,9 @@
         self.doneButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
         self.doneButton.frame = CGRectMake(10, screenSize.height - 60, screenSize.width - 20, 50);
+        [self.doneButton addTarget:self
+                            action:@selector(selectTwitterAccount)
+                  forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.doneButton];
         
         REGISTER_FOR_ORIENTATION_CHANGE(sizeComponents)
@@ -92,7 +95,7 @@
     else
         labelFrame.size.height = 100;
     self.label.frame = labelFrame;
-    self.doneButton.frame = CGRectMake(10, screenSize.height - 60, screenSize.width - 10, 50);
+    self.doneButton.frame = CGRectMake(10, screenSize.height - 60, screenSize.width - 20, 50);
 }
 
 - (CGRect)getPickerFrame
@@ -101,12 +104,23 @@
     
     float pickerHeight = 0;
     if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
-        pickerHeight = 100;
+        pickerHeight = kUIPickerViewSmall;
     else
-        pickerHeight = 216;
+        pickerHeight = kUIPickerViewLarge;
     float pickerY = screenSize.height - pickerHeight - 70;
     
     return CGRectMake(0, pickerY, screenSize.width, pickerHeight);
+}
+
+- (ACAccount *)getSelectedTwitterAccount
+{
+    NSInteger index = [self.picker selectedRowInComponent:0];
+    return self.twitterAccounts[index];
+}
+
+- (void)selectTwitterAccount
+{
+    [self.delegate accountSelectControllerFinished:self];
 }
 
 // Determine if this view needs to display
